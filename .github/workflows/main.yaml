@@ -24,7 +24,7 @@ jobs:
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v1
         with:
-          kustomize_version: v5.1.1
+          kustomize-version: v5.1.1
 
       - name: Update image in kustomization
         env:
