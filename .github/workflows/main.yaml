@@ -20,3 +20,28 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
           repository: ${{secrets.DOCKER_USERNAME}}/gitopsgo
           tags: ${{github.sha}}, latest
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize_version: v5.1.1
+
+      - name: Update image in kustomization
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        run: |
+          cd k8s
+          kustomize edit set image goserver=${DOCKER_USERNAME}/gitopsgo:${{github.sha}}
+    
+      - name: Commit changes
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add .
+          git commit -m "Update image to ${DOCKER_USERNAME}/gitopsgo:${{github.sha}}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          repository: C4st3ll4n/gitopsgo
