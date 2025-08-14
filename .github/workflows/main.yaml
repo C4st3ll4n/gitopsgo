@@ -31,14 +31,14 @@ jobs:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         run: |
           cd k8s
-          kustomize edit set image goserver=${DOCKER_USERNAME}/gitopsgo:${{github.sha}}
+          kustomize edit set image goserver=$DOCKER_USERNAME/gitospgo:$GITHUB_SHA
     
       - name: Commit changes
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add .
-          git commit -m "Update image to ${DOCKER_USERNAME}/gitopsgo:${{github.sha}}"
+          git commit -m "Update image to $DOCKER_USERNAME/gitopsgo:$GITHUB_SHA"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
