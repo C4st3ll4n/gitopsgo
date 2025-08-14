@@ -5,4 +5,5 @@ resources:
 - service.yaml
 images:
 - name: goserver
-  newName: abcd
+  newName: c4st3ll4n/gitospgo
+  newTag: edc31716f0176613012c86cb4ef77b3b9b38ef73
