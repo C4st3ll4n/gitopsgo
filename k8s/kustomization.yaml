@@ -6,4 +6,4 @@ resources:
 images:
 - name: goserver
   newName: c4st3ll4n/gitospgo
-  newTag: edc31716f0176613012c86cb4ef77b3b9b38ef73
+  newTag: ca6b296977119cc300d8ebf395b30ac881da4717
